@@ -26,3 +26,5 @@
     - *5000 photos*
 
 ### Resources have relations. For example:  posts have many comments, albums have many photos
+
+
