@@ -3,16 +3,23 @@ class NumbersCollection {
     
     constructor(data: number[]) {
         this.data = data;
-        length = this.data.length;
-
-
     }
-    swap(i: number, j: number): number {
-        return i;
+
+    
+    get length() : number {
+        return this.data.length;
+    }
+    
+
+    compare(i: number, j: number): boolean {
+        return this.data[i] > this.data[j];
+    };
+
+    swap(i: number, j: number): void {
+        [this.data[i], this.data[j]] = [this.data[j], this.data[i]];
     };
 
 
-    compare(i: number, j: number): number {
-        return j;
-    };
 }
+
+export default NumbersCollection;
