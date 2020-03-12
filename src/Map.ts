@@ -13,6 +13,7 @@ export interface MappableClass {
 }
 
 class CustomMap {
+    //private modifier means that we can only reference googleMap from inside class CustomMap
     private googleMap: google.maps.Map;
 
     constructor(element: HTMLElement) {
