@@ -3,11 +3,13 @@
 
 //this is called an implicit check
 
-interface MappableClass {
+export interface MappableClass {
+    name: string;
     location: {
         lat: number;
         lng: number;
     };
+    markerContent(): string;
 }
 
 class CustomMap {
@@ -34,9 +36,9 @@ class CustomMap {
 
         marker.addListener('click', () => {
             const infoWindow = new google.maps.InfoWindow({
-                content: 'Hi there!'
+                content: element.markerContent()
             });
-            
+
             infoWindow.open(this.googleMap, marker);
         })
     }
