@@ -1,10 +1,14 @@
 //tsc config json file is created with tsc --init
 //package json file is created with yarn init -y
 
-import NumbersCollection from './NumbersCollection';
 
+interface Sortable {
+    length: number;
+    swap(i: number, j: number): void;
+    compare(i: number, j: number): boolean;
+}
 class Sorter {
-    constructor(public collection: NumbersCollection){}
+    constructor(public collection: Sortable){}
 
     sort(): void {
         const { length }= this.collection;
@@ -21,6 +25,8 @@ class Sorter {
     }
 }
 
+import NumbersCollection from './NumbersCollection';
+
 const sorter = new Sorter(new NumbersCollection([10, 3, -5, 60]));
 sorter.sort();
-console.log(sorter.collection.data);
+console.log(sorter.collection);

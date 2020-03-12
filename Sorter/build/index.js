@@ -5,7 +5,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var NumbersCollection_1 = __importDefault(require("./NumbersCollection"));
 var Sorter = /** @class */ (function () {
     function Sorter(collection) {
         this.collection = collection;
@@ -22,6 +21,7 @@ var Sorter = /** @class */ (function () {
     };
     return Sorter;
 }());
+var NumbersCollection_1 = __importDefault(require("./NumbersCollection"));
 var sorter = new Sorter(new NumbersCollection_1.default([10, 3, -5, 60]));
 sorter.sort();
-console.log(sorter.collection.data);
+console.log(sorter.collection);
