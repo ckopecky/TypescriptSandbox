@@ -1,7 +1,10 @@
-class NumbersCollection {
+import Sorter from ".";
+
+class NumbersCollection extends Sorter{
     data: number[];
     
     constructor(data: number[]) {
+        super();
         this.data = data;
     }
 
