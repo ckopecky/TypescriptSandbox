@@ -2,7 +2,7 @@ import {Sorter} from "./Sorter";
 
 class CharactersCollection extends Sorter {
     constructor(public data: string) {
-        super()
+        super();
     }
 
     get length() : number {

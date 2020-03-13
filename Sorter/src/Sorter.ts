@@ -1,6 +1,5 @@
-import { Sortable } from './index';
 
-export abstract class Sorter implements Sortable {
+export abstract class Sorter {
     abstract compare(i: number, j: number): boolean;
     abstract swap(i: number, j: number): void;
     abstract length: number;
