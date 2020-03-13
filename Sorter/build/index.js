@@ -22,6 +22,22 @@ var Sorter = /** @class */ (function () {
     return Sorter;
 }());
 var NumbersCollection_1 = __importDefault(require("./NumbersCollection"));
-var sorter = new Sorter(new NumbersCollection_1.default([10, 3, -5, 60]));
-sorter.sort();
-console.log(sorter.collection);
+var CharactersCollection_1 = __importDefault(require("./CharactersCollection"));
+var LinkedList_1 = __importDefault(require("./LinkedList"));
+var arrSorter = new Sorter(new NumbersCollection_1.default([10, 3, -5, 60]));
+arrSorter.sort();
+console.log(arrSorter.collection);
+var charSorter = new Sorter(new CharactersCollection_1.default('The quick brown fox jumped over the lazy dog'));
+charSorter.sort();
+console.log(charSorter.collection);
+var ll = new LinkedList_1.default();
+ll.add(54643);
+ll.add(-1);
+ll.add(-45);
+ll.add(1952);
+var listSorter = new Sorter(ll);
+listSorter.sort();
+var print = function (ll) {
+    ll.print();
+};
+print(listSorter.collection);

@@ -26,7 +26,28 @@ class Sorter {
 }
 
 import NumbersCollection from './NumbersCollection';
+import CharactersCollection from './CharactersCollection';
+import LinkedList from "./LinkedList";
 
-const sorter = new Sorter(new NumbersCollection([10, 3, -5, 60]));
-sorter.sort();
-console.log(sorter.collection);
+const arrSorter = new Sorter(new NumbersCollection([10, 3, -5, 60]));
+arrSorter.sort();
+console.log(arrSorter.collection);
+
+const charSorter = new Sorter(new CharactersCollection('The quick brown fox jumped over the lazy dog'));
+charSorter.sort();
+console.log(charSorter.collection);
+
+let ll = new LinkedList();
+ll.add(54643);
+ll.add(-1);
+ll.add(-45);
+ll.add(1952);
+
+const listSorter = new Sorter(ll);
+listSorter.sort();
+
+const print = (ll: LinkedList) => {
+    ll.print();
+}
+
+print(listSorter.collection);
