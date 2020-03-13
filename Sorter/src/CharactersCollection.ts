@@ -1,10 +1,8 @@
-import Sorter from ".";
+import {Sorter} from "./Sorter";
 
 class CharactersCollection extends Sorter {
-    data: string;
-    constructor(data: string) {
+    constructor(public data: string) {
         super()
-        this.data = data;
     }
 
     get length() : number {

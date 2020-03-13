@@ -1,32 +1,18 @@
+import NumbersCollection from "./NumbersCollection";
+
 //tsc config json file is created with tsc --init
 //package json file is created with yarn init -y
 
 
-interface Sortable {
+export interface Sortable {
     length: number;
     swap(i: number, j: number): void;
     compare(i: number, j: number): boolean;
 }
-abstract class Sorter {
-    abstract compare(i: number, j: number): boolean;
-    abstract swap(i: number, j: number): void;
-    abstract length: number;
-    
-    sort(): void {
-        const { length }= this;
-
-        for(let i = 0; i < length; i++) {
-            for(let j = 0; j < length - i - 1; j++) {
-                if(this.compare(j, j + 1)) {
-                    this.swap(j, j + 1);
-                }
-            }
-        }
 
 
-    }
-}
+const numbersCollection = new NumbersCollection([50, 3, -5, 0]);
+numbersCollection.sort();
+console.log(numbersCollection.data);
 
 
-
-export default Sorter;
