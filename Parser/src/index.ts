@@ -1,15 +1,15 @@
-import {MatchReader }from './MatchReader';
+import { MatchReader }from './MatchReader';
+import { CsvReader } from './CsvReader';
 import { MatchResult} from './MatchResult';
+import { match } from 'assert';
 
-const reader: MatchReader = new MatchReader('football.csv');
 
-reader.read();
-
-const matches = reader.data;
-
+const csvReader = new CsvReader("football.csv");
+const matchReader = new MatchReader(csvReader);
+matchReader.load();
 const numWins = (str: string) => {
     let numWins: number = 0;
-    for(let match of matches) {
+    for(let match of matchReader.matches) {
         if(match[1] === str && match[5] === MatchResult.HomeWin) {
             numWins++;
         }
@@ -23,6 +23,6 @@ const numWins = (str: string) => {
 
 
 
-console.log(numWins('Leicester'));
+console.log(numWins('Man United'));
 
 
