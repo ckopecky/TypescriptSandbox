@@ -1,12 +1,28 @@
-import fs from 'fs';
+import {MatchReader }from './MatchReader';
+import { MatchResult} from './MatchResult';
 
-const football = fs.readFileSync("football.csv", {
-    encoding: "utf-8"
-}); //returns a string
+const reader: MatchReader = new MatchReader('football.csv');
 
-//need to parse the data to make it more usable
+reader.read();
 
-const split = football.split('\n').map((row: string) => row.split(','));
-console.log(split); 
-// gives us an array of arrays with match info inside each indiv array as strings
+const matches = reader.data;
+
+const numWins = (str: string) => {
+    let numWins: number = 0;
+    for(let match of matches) {
+        if(match[1] === str && match[5] === MatchResult.HomeWin) {
+            numWins++;
+        }
+        if(match[2] === str && match[5] === MatchResult.AwayWin) {
+            numWins++;
+        }
+    }
+    return `${str} number of wins: ${numWins}`;
+}
+
+
+
+
+console.log(numWins('Leicester'));
+
 
