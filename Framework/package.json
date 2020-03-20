@@ -1,0 +1,21 @@
+{
+  "name": "framework",
+  "author": {
+    "name": "Christina Kopecky"
+  },
+  "scripts": {
+    "start": "parcel index.html",
+    "server": "json-server -w db.json"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "@types/faker": "^4.1.10",
+    "axios": "^0.19.2",
+    "faker": "^4.1.0"
+  }
+}
