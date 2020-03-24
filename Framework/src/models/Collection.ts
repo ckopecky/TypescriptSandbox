@@ -1,12 +1,11 @@
-import { User, UserProps } from "./User";
 import { EventClass } from "./EventClass";
 import Axios, { AxiosResponse } from "axios";
 
-export class Collection {
-    models: User[] = [];
+export class Collection<Type, Key> {
+    models: Type[] = [];
     events: EventClass = new EventClass();
     
-    constructor(public rootUrl: string) {}
+    constructor(public rootUrl: string, public deserialize: ((json: Key) => Type)) {}
 
     
     get on() {
@@ -20,9 +19,9 @@ export class Collection {
     fetch(): void {
         Axios.get(this.rootUrl)
             .then((response: AxiosResponse) => {
-                response.data.forEach((value: UserProps) => {
-                    const user = User.buildUser(value);
-                    this.models = [...this.models, user];
+                response.data.forEach((value: Key) => {
+                    let deserial = this.deserialize(value);
+                    this.models = [...this.models, deserial];
                 });
             })
             this.trigger('change');
