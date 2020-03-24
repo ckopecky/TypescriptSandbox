@@ -1,50 +1,40 @@
-import Axios, {AxiosResponse} from "axios";
+
+import faker  from "faker";
+
+import { Model } from "./Model";
+import { Attributes } from "./Attributes";
+import { ApiSync } from "./ApiSync";
 import { EventClass } from "./EventClass";
 
-interface UserProps  {
-    [prop: string]: number | string | undefined;
-    name? : string;
-    age? : number;
-    id?: number;
-}
+
+
+
+
 
 const rootUrl = 'http://localhost:3000/users';
 
-export class User {
-    public events: EventClass = new EventClass();
+type StringState = {
+    [value: string]: string
+}
 
-    constructor( private info: UserProps) {}
+type NumberState = {
+    [value: string]: number
+}
+
+export interface UserProps  {
+    [prop: string]: StringState["value"] | NumberState["value"];
+}
+
+export class User extends Model<UserProps> {
+    static buildUser(attrs: UserProps): User {
+        return new User(
+            new Attributes<UserProps>(attrs),
+            new EventClass(),
+            new ApiSync<UserProps>(rootUrl)
+        )
+    }
+
     
-    get(propName: string): (string | number | undefined ) {
-        if(this.info[propName]) {
-            return this.info[propName];
-        }
-        else {
-            return undefined;
-        }
-    } 
-
-    set(update : UserProps) : void {
-        for(let item in update) {
-            this.info[item] = update[item]
-        }
-    }
-
-
-    fetch(): void {
-        Axios.get(`${rootUrl}/${this.get("id")}`)
-            .then((response: AxiosResponse) => {
-                this.set(response.data);
-            })
-    }
-
-    save(): void {
-        if(this.get("id")) {
-            Axios.put(`${rootUrl}/${this.get('id')}`, this.info)
-        } else {
-            Axios.post(rootUrl, this.info)
-        }
-    }
 
 }
 
