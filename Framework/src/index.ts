@@ -1,8 +1,13 @@
-import { attributes } from "./models/Person";
-import { User } from "./models/User";
 
-let user = User.buildUser(attributes);
+import { Collection } from "./models/Collection";
 
-user.save();
+const collection = new Collection("http://localhost:3000/users");
+
+collection.on('change', () => {
+    console.log(collection);
+})
+collection.fetch();
+
+
 
 
